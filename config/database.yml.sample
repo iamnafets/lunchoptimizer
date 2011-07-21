@@ -9,7 +9,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: lunchpad_development
+  database: lunchoptimizer_development
   pool: 5
   username: root
   password: PASSWORD
@@ -22,7 +22,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: lunchpad_test
+  database: lunchoptimizer_test
   pool: 5
   username: root
   password: PASSWORD
@@ -32,7 +32,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: lunchpad_production
+  database: lunchoptimizer_production
   pool: 5
   username: root
   password: PASSWORD
