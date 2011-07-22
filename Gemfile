@@ -9,6 +9,7 @@ gem 'mysql2', '~> 0.2.6'
 gem 'devise'
 gem 'haml-rails'
 gem 'sass'
+gem "paperclip", "~> 2.3"
 
 # Use unicorn as the web server
 # gem 'unicorn'
