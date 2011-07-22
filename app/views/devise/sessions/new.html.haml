@@ -1,0 +1,27 @@
+
+#content.login
+	%h1
+		%img(src="images/icons/lock-closed.png" alt="")
+		Lunch Optimizer Login
+	.notif.tip(style="display:none")
+		No password needed just submit the form
+		%a(href="#" class="close")
+	= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+		.input.placeholder
+			=f.label :email
+			=f.email_field :email
+			-#%input(type="text" id="login")
+		.input.placeholder
+			-#%label(for="pass")
+				-#Password
+			=f.label :password
+			=f.password_field :password
+			-#%input(type="password" id="pass" value="")
+		.checkbox
+			-#%input(type="checkbox" id="remember")
+			=f.check_box :remember_me
+			%label(class="inline" for="remember")
+				Remember Me
+		.submit
+			=f.submit "Log Me In"
+		-#=render :partial => "devise/shared/links"

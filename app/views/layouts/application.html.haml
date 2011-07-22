@@ -2,10 +2,44 @@
 %html
 	%head
 		%title LunchOptimizer
-		= stylesheet_link_tag :all
-		= javascript_include_tag :defaults
+		= stylesheet_link_tag 'reset.css'
+		
+		-# Main stylesheed  (EDIT THIS ONE) -->
+		= stylesheet_link_tag 'style.css'
+		
+		-# jQuery AND jQueryUI -->
+		= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js'
+		= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js'
+		= stylesheet_link_tag 'jqueryui/jqueryui.css'
+		
+		-# jWysiwyg - https://github.com/akzhan/jwysiwyg/ -->
+		= stylesheet_link_tag 'jwysiwyg/jquery.wysiwyg.old-school.css'
+		= javascript_include_tag 'jwysiwyg/jquery.wysiwyg.js'
+		
+		
+		-# Tooltipsy - http://tooltipsy.com/ -->
+		= javascript_include_tag 'tooltipsy.min.js'
+		
+		-# iPhone checkboxes - http://awardwinningfjords.com/2009/06/16/iphone-style-checkboxes.html -->
+		= javascript_include_tag 'iphone-style-checkboxes.js'
+		= javascript_include_tag 'excanvas.js'
+		
+		-# Load zoombox (lightbox effect) - http://www.grafikart.fr/zoombox -->
+		= javascript_include_tag 'zoombox/zoombox.js'
+		= stylesheet_link_tag 'zoombox/zoombox.css'
+		
+		-# Charts - http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/ -->
+		= javascript_include_tag 'visualize.jQuery.js'
+		
+		-# Uniform - http://uniformjs.com/ -->
+		= javascript_include_tag 'jquery.uniform.min.js'
+		
+		
+		-# Main Javascript that do the magic part (EDIT THIS ONE) -->
+		= javascript_include_tag 'application.js'
+
 		= csrf_meta_tag
-	%body
+	%body.dark
 		%p.notice
 			= notice
 		%p.alert
