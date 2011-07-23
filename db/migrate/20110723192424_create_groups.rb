@@ -2,8 +2,9 @@ class CreateGroups < ActiveRecord::Migration
   def self.up
     create_table :groups do |t|
       t.string :name
+      t.text :description
+      t.float :default_longitude
       t.float :default_latitude
-      t.float :default_logitude
 
       t.timestamps
     end

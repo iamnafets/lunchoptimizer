@@ -2,10 +2,12 @@
 
 one:
   name: MyString
+  description: MyText
+  default_longitude: 1.5
   default_latitude: 1.5
-  default_logitude: 1.5
 
 two:
   name: MyString
+  description: MyText
+  default_longitude: 1.5
   default_latitude: 1.5
-  default_logitude: 1.5
