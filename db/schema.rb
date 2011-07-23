@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110723053743) do
+ActiveRecord::Schema.define(:version => 20110723191655) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20110723053743) do
     t.string   "name"
     t.float    "latitude"
     t.float    "longitude"
+    t.text     "description"
+    t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

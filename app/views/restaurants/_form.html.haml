@@ -10,6 +10,9 @@
     = f.label :name
     = f.text_field :name
   .field
+    = f.label :link
+    = f.text_field :link
+  .field
     = f.label :latitude
     = f.text_field :latitude
   .field
@@ -18,8 +21,5 @@
   .field
     = f.label :description
     = f.text_area :description
-  .field
-    = f.label :link
-    = f.text_area :link
   .actions
     = f.submit 'Save'
