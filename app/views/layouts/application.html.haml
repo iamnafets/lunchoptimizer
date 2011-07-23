@@ -1,52 +1,93 @@
 !!! 5
 %html
-	%head
-		%title LunchOptimizer
-		= stylesheet_link_tag 'reset.css'
-		
-		-# Main stylesheed  (EDIT THIS ONE) -->
-		= stylesheet_link_tag 'style.css'
-		
-		-# jQuery AND jQueryUI -->
-		= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js'
-		= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js'
-		= stylesheet_link_tag 'jqueryui/jqueryui.css'
-		
-		-# jWysiwyg - https://github.com/akzhan/jwysiwyg/ -->
-		= stylesheet_link_tag 'jwysiwyg/jquery.wysiwyg.old-school.css'
-		= javascript_include_tag 'jwysiwyg/jquery.wysiwyg.js'
-		
-		
-		-# Tooltipsy - http://tooltipsy.com/ -->
-		= javascript_include_tag 'tooltipsy.min.js'
-		
-		-# iPhone checkboxes - http://awardwinningfjords.com/2009/06/16/iphone-style-checkboxes.html -->
-		= javascript_include_tag 'iphone-style-checkboxes.js'
-		= javascript_include_tag 'excanvas.js'
-		
-		-# Load zoombox (lightbox effect) - http://www.grafikart.fr/zoombox -->
-		= javascript_include_tag 'zoombox/zoombox.js'
-		= stylesheet_link_tag 'zoombox/zoombox.css'
-		
-		-# Charts - http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/ -->
-		= javascript_include_tag 'visualize.jQuery.js'
-		
-		-# Uniform - http://uniformjs.com/ -->
-		= javascript_include_tag 'jquery.uniform.min.js'
+  %head
+    %title LunchOptimizer
+    = stylesheet_link_tag 'reset.css'
+    
+    -# Main stylesheed  (EDIT THIS ONE) -->
+    = stylesheet_link_tag 'style.css'
+    
+    -# jQuery AND jQueryUI -->
+    = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js'
+    = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js'
+    = stylesheet_link_tag 'jqueryui/jqueryui.css'
+    
+    -# jWysiwyg - https://github.com/akzhan/jwysiwyg/ -->
+    = stylesheet_link_tag 'jwysiwyg/jquery.wysiwyg.old-school.css'
+    = javascript_include_tag 'jwysiwyg/jquery.wysiwyg.js'
+    
+    
+    -# Tooltipsy - http://tooltipsy.com/ -->
+    = javascript_include_tag 'tooltipsy.min.js'
+    
+    -# iPhone checkboxes - http://awardwinningfjords.com/2009/06/16/iphone-style-checkboxes.html -->
+    = javascript_include_tag 'iphone-style-checkboxes.js'
+    = javascript_include_tag 'excanvas.js'
+    
+    -# Load zoombox (lightbox effect) - http://www.grafikart.fr/zoombox -->
+    = javascript_include_tag 'zoombox/zoombox.js'
+    = stylesheet_link_tag 'zoombox/zoombox.css'
+    
+    -# Charts - http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/ -->
+    = javascript_include_tag 'visualize.jQuery.js'
+    
+    -# Uniform - http://uniformjs.com/ -->
+    = javascript_include_tag 'jquery.uniform.min.js'
 
-		-# JQuery UJS
-		= javascript_include_tag 'jquery_ujs.js'
-		
-		
-		-# Main Javascript that do the magic part (EDIT THIS ONE) -->
-		= javascript_include_tag 'application.js'
+    -# JQuery UJS
+    = javascript_include_tag 'jquery_ujs.js'
+    
+    
+    -# Main Javascript that do the magic part (EDIT THIS ONE) -->
+    = javascript_include_tag 'application.js'
 
-		= stylesheet_link_tag 'all.css'
+    = stylesheet_link_tag 'all.css'
 
-		= csrf_meta_tag
-	%body.dark
-		%p.notice
-			= notice
-		%p.alert
-			= alert
-		= yield
+    = csrf_meta_tag
+  %body.dark
+    %p.notice
+      =notice
+    %p.alert
+      =alert
+    -if user_signed_in?
+      #head
+        .left
+          %a.button.profile(href="")
+            =image_tag "icons/top/huser.png"
+          Hi,
+          %a(href="#")
+            =current_user.email
+          | 
+          =link_to 'Sign Out', destroy_user_session_path, :method => 'delete'
+        .right
+          Testing right block.
+      #sidebar
+        %ul
+          %li.nosubmenu
+            =link_to image_tag("icons/menu/home.png")+' Home', :controller => 'home'
+          %li.current
+            %a(href="#")
+              =image_tag "icons/menu/inbox2.png"
+              Main
+            %ul
+              %li.current
+                %a(href="#")
+                  Dashboard
+              %li
+                %a(href="#")
+                  Groups
+          %li
+            %a(href="#")
+              =image_tag "icons/menu/shirt.png"
+              Groups
+            %ul
+              %li
+                =link_to "Join a Group", group_join_path	
+                %a(href="#")
+                  Start a Group
+                %a.generated(href="#")
+                  Pariveda Expedia Lunches
+      #content.white
+        =yield
+    -else
+      =yield

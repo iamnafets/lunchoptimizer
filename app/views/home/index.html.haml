@@ -1,54 +1,15 @@
-#head
-	.left
-		%a.button.profile(href="")
-			=image_tag "icons/top/huser.png"
-		Hi,
-		%a(href="#")
-			=current_user.email
-		| 
-		=link_to 'Sign Out', destroy_user_session_path, :method => 'delete'
-	.right
-		Testing right block.
-#sidebar
-	%ul
-		%li.nosubmenu
-			=link_to image_tag("icons/menu/home.png")+' Home', :controller => 'home'
-		%li.current
-			%a(href="#")
-				=image_tag "icons/menu/inbox2.png"
-				Main
-			%ul
-				%li.current
-					%a(href="#")
-						Dashboard
-				%li
-					%a(href="#")
-						Groups
-		%li
-			%a(href="#")
-				=image_tag "icons/menu/shirt.png"
-				Groups
-			%ul
-				%li
-					%a(href="#")
-						Join a Group
-					%a(href="#")
-						Start a Group
-					%a.generated(href="#")
-						Pariveda Expedia Lunches
-#content.white
-	%h1
-		=image_tag "icons/dashboard.png"
-		Dashboard
-	.bloc
-		.title
-			Dashboard
-		.content.dashboard
-			.center
-				Stuff will probably happen here when I get time to put it here. I imagine initially you'll have a group selection dialog and after you're in a group or two you're going to want to opt-in to lunches.
-	.bloc
-		.title
-			Second Block
-		.content
-			.center
-				Ha!
+%h1
+  =image_tag "icons/dashboard.png"
+  Dashboard
+.bloc
+  .title
+    Dashboard
+  .content.dashboard
+    .center
+      Stuff will probably happen here when I get time to put it here. I imagine initially you'll have a group selection dialog and after you're in a group or two you're going to want to opt-in to lunches.
+.bloc
+  .title
+    Second Block
+  .content
+    .center
+      Ha!

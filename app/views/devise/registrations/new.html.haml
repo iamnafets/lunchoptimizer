@@ -1,0 +1,20 @@
+#content
+  %h1
+    =image_tag "icons/pencil"  
+    Sign Up
+  =form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    =devise_error_messages!
+    .input.placeholder
+      =f.label :email
+      %br
+      =f.email_field :email
+    .input.placeholder
+      =f.label :password
+      %br
+      =f.password_field :password
+    .input.placeholder
+      =f.label :password_confirmation
+      %br
+      =f.password_field :password_confirmation
+    .submit
+      =f.submit "Sign Me Up"
