@@ -4,8 +4,12 @@ one:
   name: MyString
   latitude: 1.5
   longitude: 1.5
+  description: MyText
+  link: MyText
 
 two:
   name: MyString
   latitude: 1.5
   longitude: 1.5
+  description: MyText
+  link: MyText

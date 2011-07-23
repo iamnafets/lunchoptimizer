@@ -5,5 +5,27 @@
   .title
     Join a Group
   .content
-    .center
-      This will be a listing of all the groups in the system
+    %p
+      This is a listing of all groups in the system. Likely you'll want to 
+      =link_to "search", "#"
+      for a group instead, or simply 
+      =link_to "enter their code", "#"
+      \.
+    %table
+      %thead
+        %tr
+          %th
+            %input.checkall(type="checkbox")
+          %th
+            Name
+          %th
+            Actions
+      %tbody
+        -@groups.each do |g|
+          %tr
+            %td
+              %input(type="checkbox")
+            %td
+              =g.name
+            %td
+              =link_to "Join", g

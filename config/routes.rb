@@ -1,9 +1,10 @@
 LunchOptimizer::Application.routes.draw do
-  get "group/view"
-  get "group/index"
+  resources :restaurants
+
   get "group/join"
 
   devise_for :users
+  resources :groups
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
