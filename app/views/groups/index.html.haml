@@ -1,25 +1,63 @@
-%h1 Listing groups
+%h1
+  =image_tag "icons/users.png"
+  Groups
+.bloc
+  .title
+    Groups
+  .content
+    %p
+      This is a listing of all groups in the system. Likely you'll want to 
+      =link_to "search", "#"
+      for a group instead, or simply 
+      =link_to "enter their code", "#"
+      \. If you don't find a group that you like, 
+      =link_to 'create a new group', new_group_path
+      \.
+    %table
+      %thead
+        %tr
+          %th
+            %input.checkall(type="checkbox")
+          %th
+            Name
+          %th
+            Actions
+      %tbody
+        -@groups.each do |group|
+          %tr
+            %td
+              %input(type="checkbox")
+            %td
+              =group.name
+            %td
+              =link_to "Join", group
+              |
+              =link_to "Show", group
+              |
+              =link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
 
-%table
-  %tr
-    %th Name
-    %th Description
-    %th Default longitude
-    %th Default latitude
-    %th
-    %th
-    %th
-
-  - @groups.each do |group|
-    %tr
-      %td= group.name
-      %td= group.description
-      %td= group.default_longitude
-      %td= group.default_latitude
-      %td= link_to 'Show', group
-      %td= link_to 'Edit', edit_group_path(group)
-      %td= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Group', new_group_path
+-#%h1 Listing groups
+-#
+-#%table
+-#  %tr
+-#    %th Name
+-#    %th Description
+-#    %th Default longitude
+-#    %th Default latitude
+-#    %th
+-#    %th
+-#    %th
+-#
+-#  - @groups.each do |group|
+-#    %tr
+-#      %td= group.name
+-#      %td= group.description
+-#      %td= group.default_longitude
+-#      %td= group.default_latitude
+-#      %td= link_to 'Show', group
+-#      %td= link_to 'Edit', edit_group_path(group)
+-#      %td= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
+-#
+-#%br
+-#
+-#= link_to 'New Group', new_group_path

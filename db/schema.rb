@@ -10,12 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110723191655) do
+ActiveRecord::Schema.define(:version => 20110723192424) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
+    t.text     "description"
+    t.float    "default_longitude"
     t.float    "default_latitude"
-    t.float    "default_logitude"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
