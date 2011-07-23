@@ -1,5 +1,9 @@
 class CreateGroups < ActiveRecord::Migration
   def self.up
+    # Need to do this because I'm an idiot
+    if table_exists? :groups
+      drop_table :groups
+    end
     create_table :groups do |t|
       t.string :name
       t.text :description
