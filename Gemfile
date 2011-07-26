@@ -11,6 +11,8 @@ gem 'haml-rails'
 gem 'sass'
 gem 'paperclip', '~> 2.3'
 gem 'jquery-rails', '>= 1.0.12'
+gem 'barista'
+gem 'therubyracer', :require => nil
 
 # Use unicorn as the web server
 #gem 'unicorn'
