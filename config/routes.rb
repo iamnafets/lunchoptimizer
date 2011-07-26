@@ -11,6 +11,8 @@ LunchOptimizer::Application.routes.draw do
     end
   end
 
+  match 'joinbycode(/:code)' => 'groups#joinbycode', :as => 'joinbycode', :defaults => { :code => nil }
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

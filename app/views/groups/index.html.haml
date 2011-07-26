@@ -12,10 +12,10 @@
           $(this).siblings('.join-button').toggle();
         });
     });
-
-%h1
-  =image_tag "icons/users.png"
-  Groups
+-content_for :header do
+  %h1
+    =image_tag "icons/users.png"
+    Groups
 .bloc
   .title
     Groups
@@ -24,7 +24,7 @@
       This is a listing of all groups in the system. Likely you'll want to 
       =link_to "search", "#"
       for a group instead, or simply 
-      =link_to "enter their code", "#"
+      =link_to "enter their code", joinbycode_path
       \. If you don't find a group that you like, 
       =link_to 'create a new group', new_group_path
       \.
@@ -36,44 +36,21 @@
           %th
             Name
           %th
+            Code
+          %th
+            Members
+          %th
             Actions
       %tbody
         -@groups.each do |group|
           %tr
             %td
               %input(type="checkbox")
-            %td
-              =group.name
+            %td=link_to group.name, group
+            %td=group.code
+            %td=group.users.count
             %td
               =link_to "Quit", quit_group_path(group), :method => 'put', :remote => true, :class => 'quit-button', :style => ((current_user.groups.include? group) ? "" : "display: none;")
               =link_to "Join", join_group_path(group), :method => 'put', :remote => true, :class => 'join-button', :style => ((current_user.groups.include? group) ? "display: none;" : "")
               |
-              =link_to "Show", group
-              |
-              =link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
-
--#%h1 Listing groups
--#
--#%table
--#  %tr
--#    %th Name
--#    %th Description
--#    %th Default longitude
--#    %th Default latitude
--#    %th
--#    %th
--#    %th
--#
--#  - @groups.each do |group|
--#    %tr
--#      %td= group.name
--#      %td= group.description
--#      %td= group.default_longitude
--#      %td= group.default_latitude
--#      %td= link_to 'Show', group
--#      %td= link_to 'Edit', edit_group_path(group)
--#      %td= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
--#
--#%br
--#
--#= link_to 'New Group', new_group_path
+              =link_to 'Delete', group, :confirm => 'Are you sure?', :method => :delete

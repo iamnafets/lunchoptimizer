@@ -111,4 +111,22 @@ class GroupsController < ApplicationController
     end
   end
 
+  # POST /groups/joinbycode/PAREXPEDIA
+  def joinbycode
+    code = if params[:code].nil? then params[:code_form] else params[:code] end
+    if not code.nil? then
+      @group = Group.where("lower(code) = lower(:code)", { :code => code}).first
+      if not @group.nil? then
+        if not current_user.groups.include? @group then
+					current_user.groups << @group
+					flash[:notice] = 'Added to group "'+@group.name+'".'
+				else
+					flash[:error] = 'Already in group.'
+				end
+      else
+				flash[:error] = 'No groups found with this code.'
+      end
+    end
+  end
+
 end

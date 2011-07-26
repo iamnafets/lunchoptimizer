@@ -1,15 +1,15 @@
-%h1
-  =image_tag "icons/users.png"
-  =@group.name 
+-content_for :header do
+  %h1
+    =image_tag "icons/users.png"
+    =@group.name 
 .bloc
   .title
     Group Information
   .content
     .center
-      %p#notice= notice
       %p
-        %b Name:
-        = @group.name
+        %b Code:
+        = @group.code
       %p
         %b Description:
         = @group.description

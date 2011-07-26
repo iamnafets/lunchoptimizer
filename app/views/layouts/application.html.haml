@@ -47,10 +47,6 @@
 
     =yield :head
   %body.dark
-    %p.notice
-      =notice
-    %p.alert
-      =alert
     -if user_signed_in?
       #head
         .left
@@ -90,6 +86,32 @@
                   %a.generated{:href => url_for(group)}
                     =group.name
       #content.white
+        =yield :header
+        -if flash[:notice]
+          .notif.info.bloc
+            %strong
+              Notice :
+            =flash[:notice]
+            %a.close(href="#")
+        -if flash[:error]
+          .notif.error.bloc
+            %strong
+              Error :
+            =flash[:error]
+            %a.close(href="#")
         =yield
     -else
+      =yield :header
+      -if flash[:notice]
+        .notif.info.bloc
+          %strong
+            Notice :
+          =flash[:notice]
+          %a.close(href="#")
+      -if flash[:error]
+        .notif.error.bloc
+          %strong
+            Error :
+          =flash[:error]
+          %a.close(href="#")
       =yield

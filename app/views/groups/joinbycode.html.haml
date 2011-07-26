@@ -1,0 +1,18 @@
+-content_for :header do
+  %h1
+    =image_tag "icons/users.png"
+    Groups
+.bloc
+  .title
+    Join by Code
+  .content
+    %p
+      Enter the code of the group you'd like to join below. If you don't know the code of the group you'd like join then you can
+      =link_to 'search for them', groups_path
+      \.
+    =form_tag do
+      .input
+        =label_tag :code_form
+        =text_field_tag :code_form
+      .submit
+        =submit_tag 'Join'
