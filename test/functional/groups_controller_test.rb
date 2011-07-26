@@ -4,7 +4,8 @@ class GroupsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
 
   setup do
-    sign_in User.first
+    @user = User.first
+    sign_in @user
     @group = groups(:one)
   end
 
@@ -48,5 +49,26 @@ class GroupsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to groups_path
+  end
+
+  test "should join group" do
+    assert_difference('@user.groups.count',1) do
+      put :join, :id => Group.first.id
+    end
+  end
+
+  test "should join group by code" do
+    grouptojoin = Group.first
+    assert_difference('@user.groups.count',1) do
+      put :joinbycode, :code => grouptojoin.code
+    end
+  end
+
+  test "should quit group" do
+    grouptoquit = Group.first
+    @user.groups << grouptoquit
+    assert_difference('@user.groups.count',-1) do
+      put :quit, :id => grouptoquit.id
+    end
   end
 end
