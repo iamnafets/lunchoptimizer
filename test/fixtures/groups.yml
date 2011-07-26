@@ -1,13 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  description: MyText
+  name: GroupOne
+  description: GroupOne description
+  code: GROUPONE
   default_longitude: 1.5
   default_latitude: 1.5
 
 two:
-  name: MyString
-  description: MyText
+  name: GroupTwo
+  description: GroupTwo description
+  code: GROUPTWO
   default_longitude: 1.5
   default_latitude: 1.5

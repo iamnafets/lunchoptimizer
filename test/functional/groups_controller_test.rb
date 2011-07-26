@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class GroupsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
+    sign_in User.first
     @group = groups(:one)
   end
 

@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class RestaurantsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
+    sign_in User.first
     @restaurant = restaurants(:one)
   end
 
