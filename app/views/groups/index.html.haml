@@ -1,3 +1,18 @@
+-content_for :head do
+  :javascript
+    $(function(){
+      $('.join-button')
+        .bind("ajax:complete", function(){
+          $(this).siblings('.quit-button').toggle();
+          $(this).toggle();
+        });
+      $('.quit-button')
+        .bind("ajax:complete", function(){
+          $(this).toggle();
+          $(this).siblings('.join-button').toggle();
+        });
+    });
+
 %h1
   =image_tag "icons/users.png"
   Groups
@@ -30,7 +45,8 @@
             %td
               =group.name
             %td
-              =link_to "Join", group
+              =link_to "Quit", quit_group_path(group), :method => 'put', :remote => true, :class => 'quit-button', :style => ((current_user.groups.include? group) ? "" : "display: none;")
+              =link_to "Join", join_group_path(group), :method => 'put', :remote => true, :class => 'join-button', :style => ((current_user.groups.include? group) ? "display: none;" : "")
               |
               =link_to "Show", group
               |

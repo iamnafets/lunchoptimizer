@@ -13,8 +13,8 @@
     = stylesheet_link_tag 'jqueryui/jqueryui.css'
     
     -# jWysiwyg - https://github.com/akzhan/jwysiwyg/ -->
-    = stylesheet_link_tag 'jwysiwyg/jquery.wysiwyg.old-school.css'
-    = javascript_include_tag 'jwysiwyg/jquery.wysiwyg.js'
+    -#= stylesheet_link_tag 'jwysiwyg/jquery.wysiwyg.old-school.css'
+    -#= javascript_include_tag 'jwysiwyg/jquery.wysiwyg.js'
     
     
     -# Tooltipsy - http://tooltipsy.com/ -->
@@ -25,8 +25,8 @@
     = javascript_include_tag 'excanvas.js'
     
     -# Load zoombox (lightbox effect) - http://www.grafikart.fr/zoombox -->
-    = javascript_include_tag 'zoombox/zoombox.js'
-    = stylesheet_link_tag 'zoombox/zoombox.css'
+    -#= javascript_include_tag 'zoombox/zoombox.js'
+    -#= stylesheet_link_tag 'zoombox/zoombox.css'
     
     -# Charts - http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/ -->
     = javascript_include_tag 'visualize.jQuery.js'
@@ -44,6 +44,8 @@
     = stylesheet_link_tag 'all.css'
 
     = csrf_meta_tag
+
+    =yield :head
   %body.dark
     %p.notice
       =notice
@@ -74,19 +76,19 @@
                 %a(href="#")
                   Dashboard
               %li
-                %a(href="#")
-                  Groups
+                =link_to 'Groups', groups_path
           %li
             %a(href="#")
               =image_tag "icons/menu/shirt.png"
               Groups
             %ul
               %li
-                =link_to "Join a Group", group_join_path	
+                =link_to "Join a Group", groups_path
                 %a(href="#")
                   Start a Group
-                %a.generated(href="#")
-                  Pariveda Expedia Lunches
+                -@menu_groups.each do |group|
+                  %a.generated{:href => url_for(group)}
+                    =group.name
       #content.white
         =yield
     -else

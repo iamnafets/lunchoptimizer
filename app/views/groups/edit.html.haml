@@ -1,6 +1,12 @@
-%h1 Editing group
+%h1
+  =image_tag "icons/users.png"
+  Editing group
 
-= render 'form'
+.bloc
+  .title
+    Edit Group
+  .content
+    =render 'form'
 
 = link_to 'Show', @group
 \|

@@ -80,4 +80,35 @@ class GroupsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  # PUT /groups/join/1
+  def join
+    #TODO Eventually we'll probably check permissions here
+    @group = Group.find(params[:id])
+    respond_to do |format|
+      if current_user.groups.include? @group
+        # Do nothing, we're already in
+        format.js { render :text => 'Failed' }
+      else
+        current_user.groups << @group
+        format.js { render :text => 'Success' }
+      end
+    end
+  end
+
+  # PUT /groups/quit/1
+  def quit
+    #TODO Eventually we'll probably check permissions here
+    @group = Group.find(params[:id])
+    respond_to do |format|
+      if current_user.groups.include? @group
+        current_user.groups.delete @group
+        format.js { render :text => 'Success' }
+      else
+        # Do nothing, we're not in anyways
+        format.js { render :text => 'Failed' }
+      end
+    end
+  end
+
 end

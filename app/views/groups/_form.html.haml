@@ -6,17 +6,17 @@
         - @group.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .input
     = f.label :name
     = f.text_field :name
-  .field
+  .input
     = f.label :description
     = f.text_area :description
-  .field
+  .input
     = f.label :default_longitude
     = f.text_field :default_longitude
-  .field
+  .input
     = f.label :default_latitude
     = f.text_field :default_latitude
-  .actions
+  .submit
     = f.submit 'Save'

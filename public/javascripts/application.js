@@ -9,9 +9,11 @@ jQuery(function($){
      * Initialize zoombox on every link with zoombox class
      * http://www.grafikart.fr/zoombox - Developped by me 
      * */
+     /*
      $('a.zoombox').zoombox({
          animation:false
      }); 
+     */
     
      /**
      * Slide toggle for blocs
@@ -27,10 +29,12 @@ jQuery(function($){
       *  Visual Editor for textarea
       *  https://github.com/akzhan/jwysiwyg/
       * */
+     /*
      $('.wysiwyg').wysiwyg({
         autoGrow: true,
         maxHeight: 600
      });
+     */
     
     /**
      * Tooltips on every links with a title not empty

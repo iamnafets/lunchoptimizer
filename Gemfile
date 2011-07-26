@@ -13,7 +13,7 @@ gem 'paperclip', '~> 2.3'
 gem 'jquery-rails', '>= 1.0.12'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+#gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'

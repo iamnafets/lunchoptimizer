@@ -1,5 +1,11 @@
-%h1 New group
+%h1
+  =image_tag "icons/users.png"
+  New group
 
-= render 'form'
+.bloc
+  .title
+    New Group
+  .content
+    =render 'form'
 
 = link_to 'Back', groups_path

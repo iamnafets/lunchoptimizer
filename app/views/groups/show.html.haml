@@ -1,18 +1,33 @@
-%p#notice= notice
+%h1
+  =image_tag "icons/users.png"
+  =@group.name 
+.bloc
+  .title
+    Group Information
+  .content
+    .center
+      %p#notice= notice
+      %p
+        %b Name:
+        = @group.name
+      %p
+        %b Description:
+        = @group.description
+      %p
+        %b Default longitude:
+        = @group.default_longitude
+      %p
+        %b Default latitude:
+        = @group.default_latitude
 
-%p
-  %b Name:
-  = @group.name
-%p
-  %b Description:
-  = @group.description
-%p
-  %b Default longitude:
-  = @group.default_longitude
-%p
-  %b Default latitude:
-  = @group.default_latitude
-
-= link_to 'Edit', edit_group_path(@group)
-\|
-= link_to 'Back', groups_path
+      = link_to 'Edit', edit_group_path(@group)
+      \|
+      = link_to 'Back', groups_path
+.bloc
+  .title
+    Members
+  .content
+    .center
+      %ul
+        -@group.users.each do |user|
+          %li=user.email
