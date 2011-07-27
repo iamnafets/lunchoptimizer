@@ -5,11 +5,15 @@
         .bind("ajax:complete", function(){
           $(this).siblings('.quit-button').toggle();
           $(this).toggle();
+          var members = $(this).parent().siblings('.members');
+          members.text(parseInt(members.text())+1);
         });
       $('.quit-button')
         .bind("ajax:complete", function(){
           $(this).toggle();
           $(this).siblings('.join-button').toggle();
+          var members = $(this).parent().siblings('.members');
+          members.text(parseInt(members.text())-1);
         });
     });
 -content_for :header do
@@ -48,7 +52,7 @@
               %input(type="checkbox")
             %td=link_to group.name, group
             %td=group.code
-            %td=group.users.count
+            %td.members=group.users.count
             %td
               =link_to "Quit", quit_group_path(group), :method => 'put', :remote => true, :class => 'quit-button', :style => ((current_user.groups.include? group) ? "" : "display: none;")
               =link_to "Join", join_group_path(group), :method => 'put', :remote => true, :class => 'join-button', :style => ((current_user.groups.include? group) ? "display: none;" : "")
