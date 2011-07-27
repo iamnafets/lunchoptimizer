@@ -1,4 +1,6 @@
 LunchOptimizer::Application.routes.draw do
+  resources :categories
+
   resources :restaurants
 
 

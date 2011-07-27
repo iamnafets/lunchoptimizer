@@ -10,7 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110727232411) do
+ActiveRecord::Schema.define(:version => 20110727234254) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -45,6 +51,11 @@ ActiveRecord::Schema.define(:version => 20110727232411) do
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "restaurants_categories", :id => false, :force => true do |t|
+    t.integer "restaurant_id"
+    t.integer "category_id"
   end
 
   create_table "users", :force => true do |t|
