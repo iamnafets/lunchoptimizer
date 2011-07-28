@@ -17,6 +17,9 @@ group :development, :test do
   gem 'term-ansicolor'
   gem 'turn'
 end
+group :development do
+  gem 'rails-erd'
+end
 
 # Use unicorn as the web server
 #gem 'unicorn'
