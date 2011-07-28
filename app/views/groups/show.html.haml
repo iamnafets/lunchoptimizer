@@ -66,15 +66,4 @@
         -@group.users.each do |user|
           -if current_user.id != user.id
             %li=user.email
-.bloc
-  .title
-    Restaurants
-  .content
-    .center
-      -if @restaurants.count == 0
-        %p
-          No restaurants are included in this group.
-      -else
-        %ul
-          -@restaurants.each do |r|
-            %li=r.name
+=render 'rating/block'

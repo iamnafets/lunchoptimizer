@@ -1,0 +1,19 @@
+.bloc
+  .title
+    Ratings
+  .content
+    -if @restaurants.count == 0
+      %p
+        No restaurants are included in this group.
+    -else
+      %table
+        %thead
+          %tr
+            %th Name
+            %th Rating
+        %tbody
+          -@restaurants.each do |r|
+            %tr
+              %td= link_to r.name,r
+              %td
+                %input.range.min-0.max-100(type="text")
