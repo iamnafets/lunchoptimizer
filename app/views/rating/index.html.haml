@@ -1,0 +1,19 @@
+-content_for :header do
+  %h1
+    =image_tag "icons/chart-bar.png"
+    Ratings
+.bloc
+  .title
+    Ratings
+  .content
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Rating
+      %tbody
+        -@restaurants.each do |r|
+          %tr
+            %td= link_to r.name,r
+            %td
+              %input.range.min-0.max-100(type="text")

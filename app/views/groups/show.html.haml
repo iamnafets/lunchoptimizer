@@ -7,6 +7,7 @@
           $(this).toggle();
           $('.me').toggle();
           $('.no-members').toggle();
+          $('.yes-members').toggle();
         });
       $('.quit-button')
         .bind("ajax:complete", function(){
@@ -14,6 +15,7 @@
           $(this).siblings('.join-button').toggle();
           $('.me').toggle();
           $('.no-members').toggle();
+          $('.yes-members').toggle();
         });
     });
 -content_for :header do
@@ -55,12 +57,24 @@
     Members
   .content
     .center
-      %ul
+      -if @group.users.count == 0 || (@group.users.count == 1 && (@group.users.include? current_user))
+        %p.no-members{:style => ((@group.users.count == 0) ? "" : "display: none;")}
+          No members currently.
+      %ul.yes-members{:style => ((@group.users.count == 0) ? "display: none;" : "")}
         %li.me{:style => ((current_user.groups.include? @group) ? "" : "display: none;")}
           %strong=current_user.email
-        -if @group.users.count == 0 || (@group.users.count == 1 && (@group.users.include? current_user))
-          %p.no-members{:style => ((@group.users.count == 0) ? "" : "display: none;")}
-            No members currently.
         -@group.users.each do |user|
           -if current_user.id != user.id
             %li=user.email
+.bloc
+  .title
+    Restaurants
+  .content
+    .center
+      -if @restaurants.count == 0
+        %p
+          No restaurants are included in this group.
+      -else
+        %ul
+          -@restaurants.each do |r|
+            %li=r.name

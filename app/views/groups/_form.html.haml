@@ -16,6 +16,9 @@
     = f.label :description
     = f.text_area :description
   .input
+    = f.label :restaurant_ids
+    = f.select :restaurant_ids, options_for_select(@restaurants), {}, { :class => 'chzn-select', :multiple => true }
+  .input
     = f.label :default_longitude
     = f.text_field :default_longitude
   .input

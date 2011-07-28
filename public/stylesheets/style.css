@@ -446,9 +446,12 @@ body{
 }
 #content .bloc .content ul, #content .bloc .content ol{
 	list-style: disc;
-	/* margin-left: 25px; */
+	margin-left: 25px;
 	line-height: 1.5em;
 	padding: 5px 0 10px;
+}
+#content .bloc .content ul.chzn-choices{
+  margin-left: 0px;
 }
 #content .bloc .content ul.toolbar{
 	padding: 3px 0px 0px 3px;

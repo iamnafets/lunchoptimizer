@@ -13,7 +13,8 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.xml
   def show
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:id], :include => :restaurants)
+    @restaurants = @group.restaurants
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +26,7 @@ class GroupsController < ApplicationController
   # GET /groups/new.xml
   def new
     @group = Group.new
+    @restaurants = Restaurant.all(:order => 'name').collect { |r| [r.name, r.id] }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,6 +36,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+    @restaurants = Restaurant.all(:order => 'name').collect { |r| [r.name, r.id] }
     @group = Group.find(params[:id])
   end
 
