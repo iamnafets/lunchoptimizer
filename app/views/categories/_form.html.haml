@@ -6,8 +6,8 @@
         - @category.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .input
     = f.label :name
     = f.text_field :name
-  .actions
+  .submit
     = f.submit 'Save'

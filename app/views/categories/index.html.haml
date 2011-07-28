@@ -1,19 +1,22 @@
-%h1 Listing categories
+-content_for :header do
+  %h1
+    =image_tag "icons/document-checklist.png"
+    Categories
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
-
-  - @categories.each do |category|
-    %tr
-      %td= category.name
-      %td= link_to 'Show', category
-      %td= link_to 'Edit', edit_category_path(category)
-      %td= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Category', new_category_path
+.bloc
+  .title
+    Categories
+  .content
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Actions
+      %tbody
+        - @categories.each do |category|
+          %tr
+            %td= link_to category.name, category
+            %td
+              =link_to image_tag('icons/actions/edit.png'), edit_category_path(category)
+              =link_to image_tag('icons/actions/delete.png'), category, :confirm => 'Are you sure?', :method => :delete
+=render 'new'

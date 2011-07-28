@@ -77,11 +77,12 @@
               =image_tag "icons/menu/inbox2.png"
               Main
             %ul
-              %li.current
-                %a(href="#")
-                  Dashboard
               %li
                 =link_to 'Groups', groups_path
+              %li
+                =link_to 'Categories', categories_path
+              %li
+                =link_to 'Restaurants', restaurants_path
           %li
             %a(href="#")
               =image_tag "icons/menu/shirt.png"

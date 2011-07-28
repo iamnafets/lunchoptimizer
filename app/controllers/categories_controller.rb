@@ -2,22 +2,12 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.xml
   def index
-    @categories = Category.all
+    @category = Category.new
+    @categories = Category.all(:order => 'name')
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categories }
-    end
-  end
-
-  # GET /categories/1
-  # GET /categories/1.xml
-  def show
-    @category = Category.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @category }
     end
   end
 
@@ -44,7 +34,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to(@category, :notice => 'Category was successfully created.') }
+        format.html { redirect_to(categories_path, :notice => 'Category "'+@category.name+'" was successfully created.') }
         format.xml  { render :xml => @category, :status => :created, :location => @category }
       else
         format.html { render :action => "new" }
@@ -73,10 +63,11 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1.xml
   def destroy
     @category = Category.find(params[:id])
+    name = @category.name
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to(categories_url) }
+      format.html { redirect_to(categories_url, :notice => 'Category "'+name+'" deleted.') }
       format.xml  { head :ok }
     end
   end

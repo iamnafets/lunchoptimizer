@@ -6,11 +6,11 @@
         - @restaurant.errors.full_messages.each do |msg|
           %li= msg
   .input
-    = f.label :categories
-    = f.select :categories, options_for_select(@categories), {}, { :class => 'chzn-select', :multiple => true }
-  .input
     = f.label :name
     = f.text_field :name
+  .input
+    = f.label :category_ids
+    = f.select :category_ids, options_for_select(@categories), {}, { :class => 'chzn-select', :multiple => true }
   .input
     = f.label :link
     = f.text_field :link

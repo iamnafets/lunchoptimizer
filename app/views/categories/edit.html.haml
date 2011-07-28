@@ -1,7 +1,10 @@
-%h1 Editing category
+-content_for :header do
+  %h1
+    =image_tag "icons/document-checklist.png" 
+    Categories
 
-= render 'form'
-
-= link_to 'Show', @category
-\|
-= link_to 'Back', categories_path
+.bloc
+  .title
+    Editing Category
+  .content
+    = render 'form'

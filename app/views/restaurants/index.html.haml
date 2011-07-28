@@ -1,27 +1,29 @@
-%h1 Listing restaurants
+-content_for :header do
+  %h1
+    =image_tag "icons/document-checklist.png"
+    Restaurants
 
-%table
-  %tr
-    %th Name
-    %th Latitude
-    %th Longitude
-    %th Description
-    %th Link
-    %th
-    %th
-    %th
+.bloc
+  .title
+    Restaurants
+  .content
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Description
+          %th Link
+          %th
 
-  - @restaurants.each do |restaurant|
-    %tr
-      %td= restaurant.name
-      %td= restaurant.latitude
-      %td= restaurant.longitude
-      %td= restaurant.description
-      %td= restaurant.link
-      %td= link_to 'Show', restaurant
-      %td= link_to 'Edit', edit_restaurant_path(restaurant)
-      %td= link_to 'Destroy', restaurant, :confirm => 'Are you sure?', :method => :delete
+      %tbody
+        - @restaurants.each do |restaurant|
+          %tr
+            %td= link_to(restaurant.name,restaurant)
+            %td= restaurant.description
+            %td= restaurant.link
+            %td
+              = link_to image_tag('icons/actions/edit.png'), edit_restaurant_path(restaurant)
+              = link_to image_tag('icons/actions/delete.png'), restaurant, :confirm => 'Are you sure?', :method => :delete
 
-%br
-
-= link_to 'New Restaurant', new_restaurant_path
+    %p
+      =link_to 'New Restaurant', new_restaurant_path

@@ -1,20 +1,27 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @restaurant.name
-%p
-  %b Latitude:
-  = @restaurant.latitude
-%p
-  %b Longitude:
-  = @restaurant.longitude
-%p
-  %b Description:
-  = @restaurant.description
-%p
-  %b Link:
-  = @restaurant.link
+-content_for :header do
+  %h1
+    =image_tag "icons/document-checklist.png"
+    Restaurants
+.bloc
+  .title
+    =@restaurant.name
+  .content
+    %p#notice= notice
+    %p
+      %b Latitude:
+      = @restaurant.latitude
+    %p
+      %b Longitude:
+      = @restaurant.longitude
+    %p
+      %b Description:
+      = @restaurant.description
+    %p
+      %b Link:
+      = @restaurant.link
+    %p
+      %b Categories:
+      = @restaurant.categories.map {|c| c.name}.join(', ')
 
 = link_to 'Edit', edit_restaurant_path(@restaurant)
 \|
