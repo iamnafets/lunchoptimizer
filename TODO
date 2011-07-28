@@ -1,0 +1,32 @@
+Initial Release
+* Restaurant history
+  -Need to have a screen for a user to edit their own restaurant
+    history (potentially using the calendar template)
+  -Need to find a way to record history based on where a group
+    went and if a user opted in
+* Group Restaurants
+  -Groups must be able to select which restaurants are in the group
+* Individual preferences
+  -Users must be able to rank all of the restaurants for groups they
+    are part of
+  -Users should be able to rank all of the restaurants for the group
+   after they've joined (potentially show this on the main group page)
+* Hatred
+  -Users can "hate" a restaurant instead of ranking it
+* Basic functionality
+  -People opt in to lunch with a group
+  -At a specific time, the place is decided
+  -At a further time, opting in is closed and the email is sent out
+
+Second Wave
+* Categories
+  -Histogrammed penalties will be implemented based on weighted recency across
+    all attendees
+* Location awareness
+  -Users with location aware opt-in can change the centroid and hence 
+    the choice of restaurant
+* Crave
+  -Users can temporarily bump ONE restaurant for that day
+
+Future
+* Mobile opt-in
