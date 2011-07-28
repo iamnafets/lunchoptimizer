@@ -446,7 +446,7 @@ body{
 }
 #content .bloc .content ul, #content .bloc .content ol{
 	list-style: disc;
-	margin-left: 25px;
+	/* margin-left: 25px; */
 	line-height: 1.5em;
 	padding: 5px 0 10px;
 }
@@ -761,7 +761,7 @@ body{
 	line-height: 23px;
 }
 #content .bloc .input select{
-	width: auto;
+	width: 200px;
 }
 #content .bloc .input textarea{
 	width: 98%;

@@ -25,6 +25,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new.xml
   def new
     @restaurant = Restaurant.new
+    @categories = Category.all(:order => 'name').collect { |cat| [cat.name, cat.id] }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1/edit
   def edit
     @restaurant = Restaurant.find(params[:id])
+    @categories = Category.all.collect { |cat| [cat.name, cat.id] }
   end
 
   # POST /restaurants

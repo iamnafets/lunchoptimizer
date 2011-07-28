@@ -102,7 +102,7 @@ jQuery(function($){
      * input.datepicker become a datepicker
      * input.range become a slider (value is inserted in the input) 
     **/
-    $("select,.input input:checkbox, input:radio, input:file").uniform();
+    //$("select,.input input:checkbox, input:radio, input:file").uniform();
    
     $( ".datepicker" ).datepicker();
     

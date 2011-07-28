@@ -36,6 +36,11 @@
 
     -# JQuery UJS
     = javascript_include_tag 'jquery_ujs.js'
+
+    -# Chosen Select
+    -# javascript_include_tag 'chosen.jquery.min.js'
+    = javascript_include_tag 'chosen.jquery.js'
+    = stylesheet_link_tag 'chosen.css'
     
     
     -# Main Javascript that do the magic part (EDIT THIS ONE) -->
@@ -45,6 +50,10 @@
 
     = csrf_meta_tag
 
+    :javascript
+      $(function(){
+        $(".chzn-select").chosen() 
+      });
     =yield :head
   %body.dark
     -if user_signed_in?

@@ -1,5 +1,9 @@
-%h1 New restaurant
-
-= render 'form'
-
-= link_to 'Back', restaurants_path
+-content_for :header do 
+  %h1
+    =image_tag 'icons/button-burn.png'
+    New restaurant
+.bloc
+  .title
+    New Restaurant
+  .content
+    =render 'form'

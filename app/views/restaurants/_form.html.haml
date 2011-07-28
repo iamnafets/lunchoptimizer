@@ -5,21 +5,23 @@
       %ul
         - @restaurant.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
+  .input
+    = f.label :categories
+    = f.select :categories, options_for_select(@categories), {}, { :class => 'chzn-select', :multiple => true }
+  .input
     = f.label :name
     = f.text_field :name
-  .field
+  .input
     = f.label :link
     = f.text_field :link
-  .field
+  .input
     = f.label :latitude
     = f.text_field :latitude
-  .field
+  .input
     = f.label :longitude
     = f.text_field :longitude
-  .field
+  .input
     = f.label :description
     = f.text_area :description
-  .actions
+  .submit
     = f.submit 'Save'
