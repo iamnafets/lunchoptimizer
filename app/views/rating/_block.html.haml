@@ -14,6 +14,11 @@
         %tbody
           -@restaurants.each do |r|
             %tr
-              %td= link_to r.name,r
+              %td= link_to r[:restaurant].name,r[:restaurant]
               %td
-                %input.range.min-0.max-100(type="text")
+                %input.range.min-0.max-100{:type => "text", :value => r[:rating].to_s}
+    %p
+      .submit
+        %input(type="submit")
+    %p
+      =@restaurants.collect{|r| r[:restaurant].name+' '+r[:rating].to_s}.join(", ")

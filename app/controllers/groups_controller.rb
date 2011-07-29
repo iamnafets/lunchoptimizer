@@ -14,7 +14,13 @@ class GroupsController < ApplicationController
   # GET /groups/1.xml
   def show
     @group = Group.find(params[:id], :include => :restaurants)
-    @restaurants = @group.restaurants
+    @restaurants = 
+      (Group.find :all,
+        :include => [:restaurants, :users], :conditions => ['users.id = ? AND groups.id = ?',current_user.id,@group.id.to_s])
+      .collect{|g| g.restaurants}.flatten.uniq.collect do |restaurant|
+        rating = restaurant.ratings.where(:user_id => current_user, :end_date => nil).first
+        {:restaurant => restaurant, :rating => (rating.nil? ? 50 : rating.rating)}
+      end
 
     respond_to do |format|
       format.html # show.html.erb
