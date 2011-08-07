@@ -1516,13 +1516,19 @@ plugin styles*/
 	height: 60px;
 	display: block;
 }
-#content .calendar td .day{
+#content .calendar td .day,
+#content .calendar td .otherMonth{
 	font-size: 25px;
 	width: 0px;
 	margin: 5px;
 	color: inherit;
 }
-#content .calendar td.today .day{
+#content .calendar td .otherMonth{
+  font-style: italic;
+}
+#content .calendar td.today .day,
+
+{
 	color: #FFFFFF;
 }
 #content .calendar .events span{

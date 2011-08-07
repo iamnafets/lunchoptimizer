@@ -15,6 +15,7 @@ LunchOptimizer::Application.routes.draw do
 
   match 'joinbycode(/:code)' => 'groups#joinbycode', :as => 'joinbycode', :defaults => { :code => nil }
   get 'ratings' => 'rating#index'
+  post 'ratings' => 'rating#set'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,11 @@
+.day
+  =date.day
+%ul.events
+  -events.each do |event|
+    %li
+      %span
+        =event[:date].strftime("%l:%M")
+      Went to
+      =event[:name]
+      with
+      =event[:company]

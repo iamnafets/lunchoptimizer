@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :groups, :join_table => "users_groups"
   has_many :ratings
+  has_many :owned_groups, :class_name => 'Group', :foreign_key => 'owner_id'
 end

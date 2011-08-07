@@ -1,21 +1,26 @@
 -content_for :head do
   :javascript
+    var single_user = #{(@group.users.count == 0 || (@group.users.count == 1 && (@group.users.include? current_user))).to_s};
     $(function(){
       $('.join-button')
         .bind("ajax:complete", function(){
           $(this).siblings('.quit-button').toggle();
           $(this).toggle();
           $('.me').toggle();
-          $('.no-members').toggle();
-          $('.yes-members').toggle();
+          if(single_user){
+            $('.no-members').toggle();
+            $('.yes-members').toggle();
+          }
         });
       $('.quit-button')
         .bind("ajax:complete", function(){
           $(this).toggle();
           $(this).siblings('.join-button').toggle();
           $('.me').toggle();
-          $('.no-members').toggle();
-          $('.yes-members').toggle();
+          if(single_user){
+            $('.no-members').toggle();
+            $('.yes-members').toggle();
+          }
         });
     });
 -content_for :header do
@@ -40,12 +45,10 @@
         %b Default latitude:
         = @group.default_latitude
 
-      = link_to 'Edit', edit_group_path(@group)
-      \|
-      = link_to 'Back', groups_path
-      \|
-      =link_to "Join", join_group_path(@group), :method => 'put', :remote => true, :class => 'join-button', :style => ((current_user.groups.include? @group) ? "display: none;" : "")
-      =link_to "Quit", quit_group_path(@group), :method => 'put', :remote => true, :class => 'quit-button', :style => ((current_user.groups.include? @group) ? "" : "display: none;")
+      -if @group.owner == current_user
+        = link_to 'Edit', edit_group_path(@group), :class => 'button'
+      =link_to "Join", join_group_path(@group), :method => 'put', :remote => true, :class => 'white button join-button', :style => ((current_user.groups.include? @group) ? "display: none;" : "")
+      =link_to "Quit", quit_group_path(@group), :method => 'put', :remote => true, :class => 'black button quit-button', :style => ((current_user.groups.include? @group) ? "" : "display: none;")
 .bloc.right
   .title
     Map

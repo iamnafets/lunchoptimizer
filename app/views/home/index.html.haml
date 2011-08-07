@@ -17,3 +17,8 @@
         -current_user.groups.each do |group|
           %li
             =group.name
+.bloc.calendar
+  .title
+    Calendar
+  .content
+    !=show_history_calendar @events

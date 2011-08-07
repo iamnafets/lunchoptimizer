@@ -2,23 +2,22 @@
   .title
     Ratings
   .content
-    -if @restaurants.count == 0
-      %p
-        No restaurants are included in this group.
-    -else
-      %table
-        %thead
-          %tr
-            %th Name
-            %th Rating
-        %tbody
-          -@restaurants.each do |r|
+    =form_tag '/ratings', :remote => true do
+      -if @restaurants.count == 0
+        %p
+          No restaurants are included in this group.
+      -else
+        %table
+          %thead
             %tr
-              %td= link_to r[:restaurant].name,r[:restaurant]
-              %td
-                %input.range.min-0.max-100{:type => "text", :value => r[:rating].to_s}
-    %p
-      .submit
-        %input(type="submit")
-    %p
-      =@restaurants.collect{|r| r[:restaurant].name+' '+r[:rating].to_s}.join(", ")
+              %th Name
+              %th Rating
+          %tbody
+            -@restaurants.each do |r|
+              %tr
+                %td= link_to r[:restaurant].name,r[:restaurant]
+                %td
+                  %input.range.min-0.max-100{:type => "text", :value => r[:rating].to_s, :name => "ratings[#{r[:restaurant].id}]"}
+        %p
+          .submit
+            %input{:type=>"submit",:value=>"Save Ratings"}

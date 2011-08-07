@@ -44,7 +44,6 @@
           %th
             Members
           %th
-            Actions
       %tbody
         -@groups.each do |group|
           %tr
@@ -54,7 +53,8 @@
             %td=group.code
             %td.members=group.users.count
             %td
-              =link_to "Quit", quit_group_path(group), :method => 'put', :remote => true, :class => 'quit-button', :style => ((current_user.groups.include? group) ? "" : "display: none;")
-              =link_to "Join", join_group_path(group), :method => 'put', :remote => true, :class => 'join-button', :style => ((current_user.groups.include? group) ? "display: none;" : "")
-              |
-              =link_to 'Delete', group, :confirm => 'Are you sure?', :method => :delete
+              =link_to "Quit", quit_group_path(group), :method => 'put', :remote => true, :class => 'black quit-button button', :style => ((current_user.groups.include? group) ? "" : "display: none;")
+              =link_to "Join", join_group_path(group), :method => 'put', :remote => true, :class => 'white join-button button', :style => ((current_user.groups.include? group) ? "display: none;" : "")
+              -if group.owner == current_user
+                =link_to 'Edit', edit_group_path(group), :class => 'button'
+                =link_to 'Delete', group, :confirm => 'Are you sure?', :method => :delete, :class => 'button'

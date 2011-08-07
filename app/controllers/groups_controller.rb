@@ -16,7 +16,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id], :include => :restaurants)
     @restaurants = 
       (Group.find :all,
-        :include => [:restaurants, :users], :conditions => ['users.id = ? AND groups.id = ?',current_user.id,@group.id.to_s])
+        :include => [:restaurants, :users], :conditions => ['groups.id = ?',@group.id.to_s])
       .collect{|g| g.restaurants}.flatten.uniq.collect do |restaurant|
         rating = restaurant.ratings.where(:user_id => current_user, :end_date => nil).first
         {:restaurant => restaurant, :rating => (rating.nil? ? 50 : rating.rating)}
@@ -50,6 +50,7 @@ class GroupsController < ApplicationController
   # POST /groups.xml
   def create
     @group = Group.new(params[:group])
+    @group.owner = current_user
 
     respond_to do |format|
       if @group.save
@@ -66,14 +67,15 @@ class GroupsController < ApplicationController
   # PUT /groups/1.xml
   def update
     @group = Group.find(params[:id])
-
-    respond_to do |format|
-      if @group.update_attributes(params[:group])
-        format.html { redirect_to(@group, :notice => 'Group was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
+    if @group.owner == current_user
+      respond_to do |format|
+        if @group.update_attributes(params[:group])
+          format.html { redirect_to(@group, :notice => 'Group was successfully updated.') }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -82,11 +84,13 @@ class GroupsController < ApplicationController
   # DELETE /groups/1.xml
   def destroy
     @group = Group.find(params[:id])
-    @group.destroy
+    if @group.owner == current_user
+      @group.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(groups_url) }
-      format.xml  { head :ok }
+      respond_to do |format|
+        format.html { redirect_to(groups_url) }
+        format.xml  { head :ok }
+      end
     end
   end
 
