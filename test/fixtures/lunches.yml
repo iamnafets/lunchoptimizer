@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  date: 2011-08-07 16:37:54
+  group_id: 
+  restaurant_id: 
+  rsvp_limit: 2011-08-07 16:37:54
+
+two:
+  name: MyString
+  date: 2011-08-07 16:37:54
+  group_id: 
+  restaurant_id: 
+  rsvp_limit: 2011-08-07 16:37:54

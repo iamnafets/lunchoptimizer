@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @lunch.name
+%p
+  %b Date:
+  = @lunch.date
+%p
+  %b Group:
+  = @lunch.group_id
+%p
+  %b Restaurant:
+  = @lunch.restaurant_id
+%p
+  %b Rsvp limit:
+  = @lunch.rsvp_limit
+
+= link_to 'Edit', edit_lunch_path(@lunch)
+\|
+= link_to 'Back', lunches_path

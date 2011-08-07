@@ -35,7 +35,12 @@ body{
 	-webkit-text-shadow: 0px 1px 0px #000000;
 	-o-text-shadow: 0px 1px 0px #000000;
 	text-shadow: 0px 1px 0px #000000;
-	z-index: 9999;
+	z-index: 2;
+}
+#logo {
+  position: fixed;
+  top: 38px;
+  z-index: 3;
 }
 #head .left{
 	position: absolute;
@@ -124,8 +129,8 @@ body{
 /*********************************************** SIDEBAR ***********************************************************/
 #sidebar{
 	position: fixed;
-	z-index: 3;
-	top: 42px;
+	z-index: 0;
+	top: 160px;
 	left: 0;
 	bottom: 0;
 	width: 240px;

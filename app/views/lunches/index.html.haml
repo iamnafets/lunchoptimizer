@@ -1,0 +1,27 @@
+%h1 Listing lunches
+
+%table
+  %tr
+    %th Name
+    %th Date
+    %th Group
+    %th Restaurant
+    %th Rsvp limit
+    %th
+    %th
+    %th
+
+  - @lunches.each do |lunch|
+    %tr
+      %td= lunch.name
+      %td= lunch.date
+      %td= lunch.group_id
+      %td= lunch.restaurant_id
+      %td= lunch.rsvp_limit
+      %td= link_to 'Show', lunch
+      %td= link_to 'Edit', edit_lunch_path(lunch)
+      %td= link_to 'Destroy', lunch, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Lunch', new_lunch_path
