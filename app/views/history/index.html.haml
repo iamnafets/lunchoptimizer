@@ -1,0 +1,61 @@
+-content_for :head do
+  :javascript
+    $(function(){
+      var month = #{@month};
+      var monthNames = #{Date::MONTHNAMES.to_s.sub(/nil/,'null')}
+      var year = #{@year};
+
+      function updateCalendar(){
+        // This is a bunch of animation nonsense that slides the new calendar
+        // pane in and the old one out
+
+        $('.current-calendar').hide(250, function() { $(this).remove(); });
+        $('.content').append('<img src="#{image_path('ajax-loader.gif')}" class="ajax-loader" />');
+        $('.calendar .title .text').text(monthNames[month]+' '+year)
+        // Just in case we have leftovers
+        $('.next-calendar').remove();
+        $('.content').append('<div class="next-calendar"></div>');
+        $('.next-calendar').hide().load('/history/'+year+'/'+month, function(){
+          $('.ajax-loader').remove();
+          $(this).show(250, function() {
+            $('.calendar td').height($('.calendar td[class!="padding"]').width());
+            $(this).removeClass('next-calendar').addClass('current-calendar');
+          });
+        });
+      }
+
+      $('a.next').live('click',function(){
+        if(month == 12){
+          year=year+1;
+          month=1;
+        }else{
+          month=month+1;
+        }
+        updateCalendar();
+      });
+      $('a.prev').live('click',function(){
+        if(month == 1){
+          year=year-1;
+          month=12;
+        }else{
+          month=month-1;
+        }
+        updateCalendar();
+      });
+      $('.calendar td').live('click', function(){
+        alert($(this).attr('id'));
+      });
+    });
+-content_for :header do
+  %h1
+    =image_tag "icons/calendar.png"
+    Personal Lunch History
+.bloc.calendar
+  .title
+    %a.prev(href='#')
+    .text
+      ="#{Date::MONTHNAMES[@month]} #{@year}"
+    %a.next(href='#')
+  .content
+    .current-calendar
+      =render 'calendar' 

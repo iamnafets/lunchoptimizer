@@ -1451,6 +1451,15 @@ plugin styles*/
 	height: 32px;
 	color: #6D6D6D;
 }
+#content .calendar td.otherMonth{
+  background: #FFFFFF none;
+}
+#content .calendar td.weekendDay{
+  background: #CCCCCC none;
+}
+#content .calendar td.weekendDay.otherMonth{
+  background: #DDDDDD none;
+}
 #content .calendar td{
 	width: 14%;
 	border: 1px solid #C5C5C5;
@@ -1472,7 +1481,8 @@ plugin styles*/
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e3e2e2',GradientType=0 );
 	background: linear-gradient(top, #f0f0f0 0%,#e3e2e2 99%);
 }
-#content .calendar td:hover{
+#content .calendar td:hover{ 
+  cursor: pointer;
 	background: #EFEFEF;
 	color: #FFFFFF;
 	/*+text-shadow:0px 1px #FFFFFF;*/
@@ -1913,4 +1923,9 @@ div.uploader input{
   margin-top: -50px;
   margin-left: -23px;
   padding-bottom: -20px;
+}
+.content .ajax-loader{
+  margin: 20px auto;
+  display: block;
+  width: 128px;
 }
