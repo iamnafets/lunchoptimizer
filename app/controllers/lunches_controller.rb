@@ -25,6 +25,10 @@ class LunchesController < ApplicationController
   # GET /lunches/new.xml
   def new
     @lunch = Lunch.new
+    @lunch.restaurant_id = -1
+    @restaurants = Restaurant.all(:order => 'name').collect { |r| [r.name, r.id] }
+    @restaurants.unshift ['*Optimized', -1]
+    @groups = Gr
 
     respond_to do |format|
       format.html # new.html.erb

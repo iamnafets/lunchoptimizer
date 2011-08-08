@@ -54,6 +54,13 @@
     Map
   .content.center
     %img{:src => "http://maps.googleapis.com/maps/api/staticmap?center="+@group.default_longitude.to_s+','+@group.default_latitude.to_s+"&zoom=14&size=300x300&maptype=hybrid&sensor=false&markers=color:blue%7C"+@group.default_longitude.to_s+','+@group.default_latitude.to_s}
+.bloc.left
+  .title
+    Upcoming Lunches
+  .content
+    None currently, 
+    =link_to "start one", new_lunch_path
+    \!
 .cb
 .bloc
   .title

@@ -275,7 +275,7 @@ body{
 #content .bloc{
 	margin: 20px 0px 0px;
 	background-color: #FFFFFF;
-	overflow: hidden;
+	overflow: visible;
 	/*+box-shadow:0px 5px 10px #AFAEAE;*/
 	-moz-box-shadow: 0px 5px 10px #AFAEAE;
 	-webkit-box-shadow: 0px 5px 10px #AFAEAE;
@@ -1933,4 +1933,8 @@ div.uploader input{
   margin: 20px auto;
   display: block;
   width: 128px;
+}
+.form-column{
+  float: left;
+  width: 300px;
 }

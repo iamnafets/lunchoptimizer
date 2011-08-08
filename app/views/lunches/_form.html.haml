@@ -6,20 +6,28 @@
         - @lunch.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :date
-    = f.datetime_select :date
-  .field
-    = f.label :group_id
-    = f.text_field :group_id
-  .field
-    = f.label :restaurant_id
-    = f.text_field :restaurant_id
-  .field
-    = f.label :rsvp_limit
-    = f.datetime_select :rsvp_limit
-  .actions
+  .form-column
+    .input
+      = f.label :name
+      %p
+        A unique name for this lunch.
+      = f.text_field :name
+    .input
+      = f.label :date
+      %p
+        The date the lunch occurs
+      = f.text_field :date, :class => 'datepicker'
+  .form-column
+    .input
+      = f.label :restaurant_id
+      %p
+        For special occasions, lunch destinations can be fixed.
+      = f.select :restaurant_id, options_for_select(@restaurants, @lunch.restaurant_id), {}, {:class => 'chzn-select' }
+    .input
+      = f.label :group_id
+      %p
+        These are the groups that will be invited and able to join this lunch. You must be a member to invite the group.
+      = f.text_field :group_id
+  .cb
+  .submit
     = f.submit 'Save'

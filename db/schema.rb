@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110807233754) do
+ActiveRecord::Schema.define(:version => 20110808005143) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -37,11 +37,14 @@ ActiveRecord::Schema.define(:version => 20110807233754) do
   create_table "lunches", :force => true do |t|
     t.string   "name"
     t.datetime "date"
-    t.integer  "group_id"
     t.integer  "restaurant_id"
-    t.datetime "rsvp_limit"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "lunches_groups", :id => false, :force => true do |t|
+    t.integer "lunch_id"
+    t.integer "group_id"
   end
 
   create_table "ratings", :force => true do |t|
@@ -90,6 +93,11 @@ ActiveRecord::Schema.define(:version => 20110807233754) do
   create_table "users_groups", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "group_id"
+  end
+
+  create_table "users_lunches", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "lunch_id"
   end
 
 end
