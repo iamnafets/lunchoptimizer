@@ -16,7 +16,7 @@
       = f.label :date
       %p
         The date the lunch occurs
-      = f.text_field :date, :class => 'datepicker'
+      = f.text_field :formatted_date, :class => 'datepicker'
   .form-column
     .input
       = f.label :restaurant_id
@@ -27,7 +27,7 @@
       = f.label :group_id
       %p
         These are the groups that will be invited and able to join this lunch. You must be a member to invite the group.
-      = f.text_field :group_id
+      = f.select :group_ids, options_for_select(@groups, @lunch.group_ids), {}, {:class => 'chzn-select', :multiple => 'true' }
   .cb
   .submit
     = f.submit 'Save'

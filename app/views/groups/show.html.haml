@@ -58,9 +58,16 @@
   .title
     Upcoming Lunches
   .content
-    None currently, 
-    =link_to "start one", new_lunch_path
-    \!
+    -if @group.lunches.count == 0
+      None currently, 
+      =link_to "start one", new_lunch_path
+      \!
+    -else
+      %ul
+        -@group.lunches.order(:date => 'desc').each do |lunch|
+          %li
+            =link_to @lunch, "#{lunch.name} (#{lunch.date})"
+    =link_to "Start a lunch", new_lunch_path
 .cb
 .bloc
   .title

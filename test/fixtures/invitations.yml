@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 
+  email: MyString
+  sent_date: 2011-08-20 15:33:22
+  lunch_id: 
+
+two:
+  user_id: 
+  email: MyString
+  sent_date: 2011-08-20 15:33:22
+  lunch_id: 

@@ -1,27 +1,28 @@
-%h1 Listing lunches
+.bloc
+  .title
+    Lunches
+  .content
+    %p
+      Listed below are all the lunches that you've created or are attended.
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Date
+          %th Groups
+          %th Restaurant
+          %th
 
-%table
-  %tr
-    %th Name
-    %th Date
-    %th Group
-    %th Restaurant
-    %th Rsvp limit
-    %th
-    %th
-    %th
+      %tbody
+        - @lunches.each do |lunch|
+          %tr
+            %td= lunch.name
+            %td= lunch.date
+            %td= lunch.group_ids
+            %td= lunch.restaurant_id
+            %td
+              = link_to 'Show', lunch
+              = link_to 'Edit', edit_lunch_path(lunch)
+              = link_to 'Destroy', lunch, :confirm => 'Are you sure?', :method => :delete
 
-  - @lunches.each do |lunch|
-    %tr
-      %td= lunch.name
-      %td= lunch.date
-      %td= lunch.group_id
-      %td= lunch.restaurant_id
-      %td= lunch.rsvp_limit
-      %td= link_to 'Show', lunch
-      %td= link_to 'Edit', edit_lunch_path(lunch)
-      %td= link_to 'Destroy', lunch, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Lunch', new_lunch_path
+    %p= link_to 'New Lunch', new_lunch_path

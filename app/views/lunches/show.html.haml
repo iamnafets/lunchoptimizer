@@ -1,21 +1,62 @@
-%p#notice= notice
+-content_for :head do
+  :javascript
+    var single_user = #{(@lunch.users.count == 0 || (@lunch.users.count == 1 && (@lunch.users.include? current_user))).to_s};
+    $(function(){
+      $('.join-button')
+        .bind("ajax:complete", function(){
+          $(this).siblings('.quit-button').toggle();
+          $(this).toggle();
+          $('.me').toggle();
+          if(single_user){
+            $('.no-attendees').toggle();
+            $('.yes-attendees').toggle();
+          }
+        });
+      $('.quit-button')
+        .bind("ajax:complete", function(){
+          $(this).toggle();
+          $(this).siblings('.join-button').toggle();
+          $('.me').toggle();
+          if(single_user){
+            $('.no-attendees').toggle();
+            $('.yes-attendees').toggle();
+          }
+        });
+    });
+-content_for :header do
+  %h1
+    =image_tag "icons/lunch.png"
+    Lunch
+.bloc
+  .title
+    =@lunch.name
+  .content
+    %p
+      %b Name:
+      = @lunch.name
+    %p
+      %b Date:
+      = @lunch.date
+    %p
+      %b Group:
+      = @lunch.group_ids
+    %p
+      %b Restaurant:
+      = @lunch.restaurant_id
+    = link_to 'Edit', edit_lunch_path(@lunch), :class => 'button'
+    =link_to "I'm Attending", attend_lunch_path(@lunch), :method => 'put', :remote => true, :class => 'white button join-button', :style => ((@lunch.users.include? current_user) ? "display: none;" : "")
+    =link_to "I'm Not Attending", unattend_lunch_path(@lunch), :method => 'put', :remote => true, :class => 'black button quit-button', :style => ((@lunch.users.include? current_user) ? "" : "display: none;")
+.bloc
+  .title
+    Attendees
+  .content
+    -if @lunch.users.count == 0 || (@lunch.users.count == 1 && (@lunch.users.include? current_user))
+      %p.no-attendees{:style => ((@lunch.users.count == 0) ? "" : "display: none;")}
+        No attendees currently.
+    %ul.yes-attendees{:style => ((@lunch.users.count == 0) ? "display: none;" : "")}
+      %li.me{:style => ((current_user.groups.include? @lunch) ? "" : "display: none;")}
+        %strong=current_user.email
+      -@lunch.users.each do |user|
+        -if current_user.id != user.id
+          %li=user.email
 
-%p
-  %b Name:
-  = @lunch.name
-%p
-  %b Date:
-  = @lunch.date
-%p
-  %b Group:
-  = @lunch.group_id
-%p
-  %b Restaurant:
-  = @lunch.restaurant_id
-%p
-  %b Rsvp limit:
-  = @lunch.rsvp_limit
-
-= link_to 'Edit', edit_lunch_path(@lunch)
-\|
-= link_to 'Back', lunches_path

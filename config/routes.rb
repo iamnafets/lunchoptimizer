@@ -1,5 +1,10 @@
 LunchOptimizer::Application.routes.draw do
-  resources :lunches
+  resources :lunches do
+    member do
+      put :attend
+      put :unattend
+    end
+  end
 
   resources :categories
 
