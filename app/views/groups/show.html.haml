@@ -4,6 +4,8 @@
     $(function(){
       $('.join-button')
         .bind("ajax:complete", function(){
+          $('.display-lunches').toggle();
+          $('.hidden-lunches').toggle();
           $(this).siblings('.quit-button').toggle();
           $(this).toggle();
           $('.me').toggle();
@@ -14,6 +16,8 @@
         });
       $('.quit-button')
         .bind("ajax:complete", function(){
+          $('.display-lunches').toggle();
+          $('.hidden-lunches').toggle();
           $(this).toggle();
           $(this).siblings('.join-button').toggle();
           $('.me').toggle();
@@ -58,16 +62,20 @@
   .title
     Upcoming Lunches
   .content
-    -if @group.lunches.count == 0
-      None currently, 
-      =link_to "start one", new_lunch_path
-      \!
-    -else
-      %ul
-        -@group.lunches.order(:date => 'desc').each do |lunch|
-          %li
-            =link_to @lunch, "#{lunch.name} (#{lunch.date})"
-    =link_to "Start a lunch", new_lunch_path
+    .display-lunches{:style => ((current_user.groups.include? @group) ? "" : "display: none;")}
+      -if @group.lunches.count == 0
+        None currently, 
+        =link_to "start one", new_group_lunch_path(@group)
+        \!
+      -else
+        %ul
+          -@group.lunches.order(:date).where(['date > NOW()']).each do |lunch|
+            %li
+              =link_to @lunch, "#{lunch.name} (#{lunch.formatted_date})"
+        =link_to "Start a lunch", new_group_lunch_path(@group)
+    .hidden-lunches{:style => ((not current_user.groups.include? @group) ? "" : "display: none;")}
+      %p
+        You can't see the lunches this group is going to until you join!
 .cb
 .bloc
   .title

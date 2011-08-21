@@ -14,6 +14,7 @@ LunchOptimizer::Application.routes.draw do
   devise_for :users
 
   resources :groups do
+    resources :lunches
     member do
       put  :quit
       put  :join

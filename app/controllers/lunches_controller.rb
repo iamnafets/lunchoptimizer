@@ -2,7 +2,12 @@ class LunchesController < ApplicationController
   # GET /lunches
   # GET /lunches.xml
   def index
-    @lunches = Lunch.all
+    if params[:group_id].nil?
+      @lunches = Lunch.all
+    else
+      @group = Group.find(params[:group_id])
+      @lunches = @group.lunches
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -30,8 +35,15 @@ class LunchesController < ApplicationController
 
   # GET /lunches/new
   # GET /lunches/new.xml
+  # GET /groups/1/lunches/new
   def new
-    @lunch = Lunch.new(:restaurant_id => -1, :date => DateTime.now)
+    @lunch = Lunch.new(
+      :restaurant_id => -1,
+      :date => DateTime.now,
+      :host_user => current_user,
+      :name => "Lunch #{DateTime.now.strftime("%m-%d-%y")}"
+    )
+    @lunch.host_group = Group.find(params[:group_id])
     setup_groups_and_restaurants
 
     respond_to do |format|
@@ -43,12 +55,15 @@ class LunchesController < ApplicationController
   # GET /lunches/1/edit
   def edit
     @lunch = Lunch.find(params[:id])
+    setup_groups_and_restaurants
   end
 
   # POST /lunches
   # POST /lunches.xml
   def create
     @lunch = Lunch.new(params[:lunch])
+    @lunch.groups << Group.find(@lunch.host_group_id)
+    @lunch.host_user = current_user
     setup_groups_and_restaurants
 
     respond_to do |format|

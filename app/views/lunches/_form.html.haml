@@ -8,6 +8,15 @@
 
   .form-column
     .input
+      %label
+        Hosts
+      %p
+        %em=@lunch.host_user.email
+        %br
+        %em=@lunch.host_group.name
+      %p
+        The person responsible for calling the restaurant in advance if necessary and herding the cats when the time comes.
+    .input
       = f.label :name
       %p
         A unique name for this lunch.
@@ -18,6 +27,11 @@
         The date the lunch occurs
       = f.text_field :formatted_date, :class => 'datepicker'
   .form-column
+    .input
+      =f.label :host_group
+      =f.select :host_group_id, options_for_select(@groups, @lunch.host_group_id), {}, {:class => 'chzn-select'}
+      %p
+        This group decides what restaurants will be included and is invited by default
     .input
       = f.label :restaurant_id
       %p

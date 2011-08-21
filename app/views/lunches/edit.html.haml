@@ -1,7 +1,10 @@
-%h1 Editing lunch
-
-= render 'form'
-
-= link_to 'Show', @lunch
-\|
-= link_to 'Back', lunches_path
+-content_for :header do
+  %h1
+    =image_tag "icons/lunch.png"
+    Lunch
+.bloc
+  .title
+    Editing Lunch
+  .content
+    =render 'form'
+    =link_to 'Show', @lunch
