@@ -23,7 +23,11 @@ class RatingController < ApplicationController
       end
     end
     respond_to do |format|
-      format.js { render :text => params['ratings'] }
+      format.js { render :json => 
+        {
+          :result => 'Success'
+        }
+      }
     end
   end
 end

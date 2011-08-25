@@ -17,10 +17,27 @@
         the financial, social, and temporal benefits associated with having someone else choose where you eat.
 .bloc
   .title
+    Lunches Today
+  .content
+    %p
+      The are the lunches available for the groups that you are a part of. You can only attend one, so make it good!
+    -if @lunches.count>0
+      %ul
+        -@lunches.each do |lunch|
+          %li=link_to lunch.name,lunch
+    -else
+      %p
+        No lunches today,
+        =link_to 'start one', new_lunch_path
+        \.
+.bloc
+  .title
     Groups You Belong To
   .content
     .center
+      %p
+        The groups you belong to determine what lunches you will be invited to by default. Try to join groups that are close to you geographically so that you're more likely to be happy with the lunch choices.
       %ul
         -current_user.groups.each do |group|
           %li
-            =group.name
+            =link_to group.name, group

@@ -1,8 +1,16 @@
+-content_for :head do
+  :javascript
+    $(function(){
+      $('.ratings-form')
+        .bind('ajax:complete', function(xhr,data,stuff){
+          alert(data.result);
+        });
+    });
 .bloc
   .title
     Ratings
   .content
-    =form_tag '/ratings', :remote => true do
+    =form_tag '/ratings', :remote => true, :class => 'ratings-form' do
       -if @restaurants.count == 0
         %p
           No restaurants are included in this group.
@@ -20,4 +28,4 @@
                   %input.range.min-0.max-100{:type => "text", :value => r[:rating].to_s, :name => "ratings[#{r[:restaurant].id}]"}
         %p
           .submit
-            %input{:type=>"submit",:value=>"Save Ratings"}
+            =submit_tag 'Save Ratings', :class => 'save-ratings-button'

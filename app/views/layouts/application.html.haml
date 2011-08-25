@@ -25,8 +25,8 @@
     = javascript_include_tag 'excanvas.js'
     
     -# Load zoombox (lightbox effect) - http://www.grafikart.fr/zoombox -->
-    -#= javascript_include_tag 'zoombox/zoombox.js'
-    -#= stylesheet_link_tag 'zoombox/zoombox.css'
+    = javascript_include_tag 'zoombox.js'
+    = stylesheet_link_tag 'zoombox.css'
     
     -# Charts - http://www.filamentgroup.com/lab/update_to_jquery_visualize_accessible_charts_with_html5_from_designing_with/ -->
     = javascript_include_tag 'visualize.jQuery.js'
@@ -53,6 +53,10 @@
     :javascript
       $(function(){
         $(".chzn-select").chosen() 
+        $("a.zoombox").zoombox({
+          animation: false,
+          theme: 'lightbox'
+        });
       });
     =yield :head
   %body.dark
@@ -89,6 +93,8 @@
                 =link_to 'Restaurants', restaurants_path
               %li
                 =link_to 'Ratings', ratings_path
+              %li
+                =link_to 'Lunches', lunches_path
           %li
             %a(href="#")
               =image_tag "icons/menu/shirt.png"
@@ -101,6 +107,9 @@
                 -@menu_groups.each do |group|
                   %a.generated{:href => url_for(group)}
                     =group.name
+          %li.nosubmenu
+            %a.zoombox.w450.h400(href="lunches?bare")
+              Modal
       #content.white
         =yield :header
         -if flash[:notice]

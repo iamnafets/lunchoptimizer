@@ -54,7 +54,7 @@
       %p.no-attendees{:style => ((@lunch.users.count == 0) ? "" : "display: none;")}
         No attendees currently.
     %ul.yes-attendees{:style => ((@lunch.users.count == 0) ? "display: none;" : "")}
-      %li.me{:style => ((current_user.groups.include? @lunch) ? "" : "display: none;")}
+      %li.me{:style => ((current_user.lunches.include? @lunch) ? "" : "display: none;")}
         %strong=current_user.email
       -@lunch.users.each do |user|
         -if current_user.id != user.id

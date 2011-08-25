@@ -10,7 +10,11 @@ class LunchesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # index.html.erb
+      unless params.include? :bare
+        format.html
+      else
+        format.html { render :layout => 'bare' }
+      end
       format.xml  { render :xml => @lunches }
     end
   end
@@ -41,9 +45,10 @@ class LunchesController < ApplicationController
       :restaurant_id => -1,
       :date => DateTime.now,
       :host_user => current_user,
+      :host_group => current_user.groups.first,
       :name => "Lunch #{DateTime.now.strftime("%m-%d-%y")}"
     )
-    @lunch.host_group = Group.find(params[:group_id])
+    @lunch.host_group = Group.find(params[:group_id]) unless params[:group_id].nil?
     setup_groups_and_restaurants
 
     respond_to do |format|
@@ -62,7 +67,9 @@ class LunchesController < ApplicationController
   # POST /lunches.xml
   def create
     @lunch = Lunch.new(params[:lunch])
-    @lunch.groups << Group.find(@lunch.host_group_id)
+    host_group = Group.find(@lunch.host_group_id)
+    @lunch.groups << host_group unless @lunch.groups.include? host_group
+    @lunch.users << current_user
     @lunch.host_user = current_user
     setup_groups_and_restaurants
 
