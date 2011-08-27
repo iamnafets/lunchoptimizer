@@ -1,0 +1,11 @@
+-content_for :header do
+  %h1
+    =image_tag 'icons/lunch.png'
+    Lunches
+.bloc
+  .title
+    Lunch on 
+    =@date.to_s
+  .content
+    =form_tag :controller => 'history', :action => 'update'
+    =select_tag :lunch_id, options_for_select(@lunches, @lunch_id), {}, {:class => 'chzn-select'}

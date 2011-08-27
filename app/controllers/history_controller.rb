@@ -15,4 +15,34 @@ class HistoryController < ApplicationController
 
     render :layout => false
   end
+
+  def edit
+    @year = params[:year].to_i
+    @month = params[:month].to_i
+    @day = params[:day].to_i
+    @date = Date.new @year,@month,@day
+
+    @lunch_id = nil
+  end
+
+  def update
+    @year = params[:year].to_i
+    @month = params[:month].to_i
+    @day = params[:day].to_i
+    @date = Date.new @year,@month,@day
+
+    @lunch_id = params[:lunch_id].to_i
+    @lunch = Lunch.find(@lunch_id)
+
+    if @lunch.users.include? current_user
+      @message = 'You already went to this lunch.'
+    else
+      @lunch.users << current_user
+    end
+
+    respond_to do |format|
+      
+    end
+
+  end
 end

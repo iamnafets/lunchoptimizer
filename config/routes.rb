@@ -26,6 +26,7 @@ LunchOptimizer::Application.routes.draw do
   post 'ratings' => 'rating#set'
   get 'history' => 'history#index'
   get 'history/:year/:month' => 'history#month'
+  get 'history/:year/:month/:day' => 'history#edit'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
