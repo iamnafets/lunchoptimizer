@@ -43,7 +43,7 @@
         updateCalendar();
       });
       $('.calendar td').live('click', function(){
-        alert($(this).attr('id'));
+        window.top.location = $(this).find('a').attr('href');
       });
     });
 -content_for :header do

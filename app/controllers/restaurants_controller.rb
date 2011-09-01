@@ -36,7 +36,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1/edit
   def edit
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.category_ids = @restaurant.categories.collect { |cat| [cat.name, cat.id] }
+    #@restaurant.category_ids = @restaurant.categories.collect { |cat| [cat.name, cat.id] }
     @categories = Category.all.collect { |cat| [cat.name, cat.id] }
   end
 

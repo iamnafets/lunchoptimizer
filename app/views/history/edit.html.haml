@@ -8,4 +8,24 @@
     =@date.to_s
   .content
     =form_tag :controller => 'history', :action => 'update'
-    =select_tag :lunch_id, options_for_select(@lunches, @lunch_id), {}, {:class => 'chzn-select'}
+    =hidden_field_tag :year, @year
+    =hidden_field_tag :month, @month
+    =hidden_field_tag :day, @day
+    %p
+      On
+      =@date.to_s
+      we have you recorded as having attended
+      %em
+        -if @lunch.nil?
+          no lunch
+        -else
+          ="#{@lunch.name} (#{@lunch.date.to_s})"
+
+    .input
+      %label Lunch you attended
+      =select_tag :lunch_id, options_for_select(@lunches, @lunch_id), {:class => 'chzn-select', :width => '200px'}
+    .submit
+      =submit_tag 'Update Lunch'
+
+    =link_to 'Back to History', history_path(:year => @year, :month => @month), :class => 'button'
+    

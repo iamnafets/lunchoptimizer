@@ -1,9 +1,11 @@
 .day
   =date.day
 %ul.events
-  -events.each do |event|
+  %span(style="display:none")
+    =link_to 'Click to edit lunch for this day', url_for(:action => 'edit', :year => date.year, :month => date.month, :day => date.day)
+  -events.each do |lunch|
     %li
       %span
-        =event[:name]
+        =lunch.name
       with
-      =event[:company]
+      =lunch.host_group.name

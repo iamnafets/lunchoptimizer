@@ -131,6 +131,15 @@ class LunchesController < ApplicationController
     end
   end
 
+  # GET /lunches/rank/1
+  def rank
+    @lunch = Lunch.find(params[:id])    
+
+    respond_to do |format|
+      format.xml { render :xml => @rankings }
+    end
+  end
+
   # DELETE /lunches/1
   # DELETE /lunches/1.xml
   def destroy

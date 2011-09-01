@@ -3,6 +3,7 @@ LunchOptimizer::Application.routes.draw do
     member do
       put :attend
       put :unattend
+      get :rank
     end
   end
 
@@ -27,6 +28,7 @@ LunchOptimizer::Application.routes.draw do
   get 'history' => 'history#index'
   get 'history/:year/:month' => 'history#month'
   get 'history/:year/:month/:day' => 'history#edit'
+  post 'history/update' => 'history#update'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
